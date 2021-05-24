@@ -1,0 +1,33 @@
+﻿@model MVC5DBFirstLoginRegister.ViewModels.DashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Activation Code
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                   @Html.ActionLink(item.ActivationCode.ToString(), "VerifyAcount", "User", new { code = @item.ActivationCode.ToString() }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
